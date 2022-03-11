@@ -1,2 +1,2 @@
-./NoVGM.txt, ~/SymLinked/NoVGM/
-./NoVGM2.txt, ~/SymLinked/NoVGM2/
+./playlist1.txt, ~/SymLinks/playlist1/
+./playlist2.txt, ~/SymLinks/playlist2/

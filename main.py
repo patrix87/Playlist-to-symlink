@@ -1,5 +1,6 @@
 import subprocess
 from datetime import datetime
+from pathlib import Path
 
 PLAYLISTS = "./playlists.txt"
 
@@ -13,7 +14,13 @@ def parse_playlists() -> list:
     playlists = []
     for line in content:
         data = line.split(",")
-        playlists.append((data[0].strip(),data[1].strip()))
+        playlist = data[0].strip()
+        destination = data[1].strip()
+        try:
+            Path(destination).mkdir(parents=True, exist_ok=True)
+        except Exception as e:
+            print_to_console(f"Error creating directory:\n{e}")
+        playlists.append((playlist,destination))
     return playlists
         
 
@@ -22,9 +29,9 @@ def parse_tracks(playlist: str) -> list:
     tracks = []
     for line in content:
         if line[0] == "#": continue
-        line = line.strip().replace('"','')
-        data = line.split("/")
-        tracks.append((line,data.pop().replace("'","\'")))
+        fullpath = line.strip().replace('"','')
+        trackname = (line.split("/")).pop().replace("'","\'")
+        tracks.append((fullpath,trackname))
     return tracks
 
 
@@ -33,9 +40,9 @@ def make_symlink(track: list, destination: str):
     link = f"{destination}{track[1]}"
     try:
         result = subprocess.run(f'ln -sf "{source}" "{link}"', shell=True, check=True)
-        print_to_console(f"Created symlink:\n    {result}")
+        print_to_console(f"Created symlink:\n{result}")
     except Exception as e:
-        print_to_console(f"Error creating symlink:\n    {e}")
+        print_to_console(f"Error creating symlink:\n{e}")
 
 
 def main():
