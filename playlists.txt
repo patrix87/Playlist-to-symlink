@@ -1,0 +1,2 @@
+./NoVGM.txt, ~/SymLinked/NoVGM/
+./NoVGM2.txt, ~/SymLinked/NoVGM2/
