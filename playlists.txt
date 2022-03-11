@@ -1,2 +1,3 @@
-./playlist1.txt, ~/SymLinks/playlist1/
-./playlist2.txt, ~/SymLinks/playlist2/
+# Format is : playlist_path, tracks_path, symlinks_destination_path
+./playlist1.m3u, ~/localtracks, ~/SymLinks/playlist1
+./playlist2.m3u, ~/localtracks, ~/SymLinks/playlist2
