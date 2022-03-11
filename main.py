@@ -33,8 +33,8 @@ def parse_tracks(playlist: str, source: str) -> list:
         line = line.strip().replace('"','').replace("'","\'")
         fullpath = line.split("/")
         fullpath.pop(0)
-        trackname = fullpath[-1]
-        fullpath = "/".join([source]+fullpath)
+        trackname = fullpath[-1].strip()
+        fullpath = "/".join([source]+fullpath).strip()
         tracks.append((fullpath,trackname))
     return tracks
 
